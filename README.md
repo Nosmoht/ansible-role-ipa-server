@@ -54,4 +54,4 @@ Example playbook
 ```
 
 # Author
-[Thomas Krahn](mailto:thomas.krahn@esailors.de)
+[Thomas Krahn](mailto:ntbc@gmx.net)
