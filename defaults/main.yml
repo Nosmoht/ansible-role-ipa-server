@@ -1,6 +1,6 @@
 ---
 ipa_server_package_state: present
-ipa_server_service_state: running
+ipa_server_service_state: started
 ipa_server_service_enabled: true
 ipa_server_flush_handlers: true
 ipa_server_realm_name: EXAMPLE.COM
