@@ -1,0 +1,23 @@
+---
+ipa_server_package_state: present
+ipa_server_service_state: running
+ipa_server_service_enabled: true
+ipa_server_flush_handlers: true
+ipa_server_realm_name: EXAMPLE.COM
+ipa_server_domain_name: example.com
+ipa_server_directory_manager_password: t0ps3cr3t
+ipa_server_admin_user: admin
+ipa_server_admin_password: t0ps3cr3t
+ipa_server_hostname: '{{ ansible_nodename }}'
+ipa_server_ip_address: '{{ ansible_eth0.ipv4.address }}'
+#ipa_server_idstart: None
+#ipa_server_idmax: None
+#ipa_server_dns_forwarder: None
+ipa_server_mkhomedir: true
+ipa_server_setup_dns: false
+ipa_server_ssh_trust_dns: false
+ipa_server_hbac_allow: true
+ipa_server_setup_ntp: true
+ipa_server_configure_ssh: true
+ipa_server_configure_sshd: true
+ipa_server_ui_redirect: true

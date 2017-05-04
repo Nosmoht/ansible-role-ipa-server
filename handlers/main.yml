@@ -1,0 +1,24 @@
+---
+- name: stop ipa_server
+  service:
+    name: '{{ item }}'
+    state: stopped
+  with_items: '{{ ipa_server_service_names | default([]) }}'
+
+- name: start ipa_server
+  service:
+    name: '{{ item }}'
+    state: started
+  with_items: '{{ ipa_server_service_names | default([]) }}'
+
+- name: reload ipa_server
+  service:
+    name: '{{ item }}'
+    state: reloaded
+  with_items: '{{ ipa_server_service_names | default([]) }}'
+
+- name: restart ipa_server
+  service:
+    name: '{{ item }}'
+    state: restarted
+  with_items: '{{ ipa_server_service_names | default([]) }}'

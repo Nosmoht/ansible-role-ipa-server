@@ -1,0 +1,7 @@
+---
+- name: Ensure packages
+  package:
+    name: '{{ item }}'
+    state: '{{ ipa_server_package_state }}'
+  with_items: '{{ ipa_server_package_names }}'
+  notify: restart ipa_server

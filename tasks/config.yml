@@ -1,0 +1,26 @@
+---
+- name: install
+  shell: 'ipa-server-install \
+    --realm {{ ipa_server_realm_name }} \
+    --domain {{ ipa_server_domain_name }} \
+    -p {{ ipa_server_directory_manager_password }} \
+    -a {{ ipa_server_admin_password }} \
+    --hostname {{ ipa_server_hostname }} \
+    --ip-address={{ ipa_server_ip_address }} \
+    --unattend \
+    {{ "--idstart=%s" % ipa_server_idstart if ipa_server_idstart | default(False) else "" }} \
+    {{ "--idmax=%s" % ipa_server_idmax if ipa_server_idmax | default(False) else "" }} \
+    {{ "--forwarder=%s" % ipa_server_dns_forwarder if ipa_server_dns_forwarder | default(False) else "" }} \
+    {{ "--mkhomedir" if ipa_server_mkhomedir | default(True) else "" }} \
+    {{ "--setup-dns" if ipa_server_setup_dns | default(True) else "" }} \
+    {{ "--ssh-trust-dns" if ipa_server_ssh_trust_dns | default(True) else "" }} \
+    {{ "" if ipa_server_hbac_allow else "--no_hbac_allow" }} \
+    {{ "" if ipa_server_setup_ntp else "--no-ntp" }} \
+    {{ "" if ipa_server_configure_ssh else "--no-ssh" }} \
+    {{ "" if ipa_server_configure_sshd else "--no-sshd" }} \
+    {{ "" if ipa_server_ui_redirect else "--no-ui-redirect" }}'
+  # args:
+  #   creates: /etc/ipa/default.conf
+  register: ipa_server_install_register
+  failed_when: ipa_server_install_register.rc != 0 and "IPA server is already configured on this system" not in ipa_server_install_register.stderr
+  changed_when: ipa_server_install_register.rc == 0

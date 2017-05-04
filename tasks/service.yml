@@ -1,0 +1,7 @@
+---
+- name: Ensure service
+  service:
+    name: '{{ item }}'
+    state: '{{ ipa_server_service_state }}'
+    enabled: '{{ ipa_server_service_enabled }}'
+  with_items: '{{ ipa_server_service_names }}'

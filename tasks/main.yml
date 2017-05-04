@@ -1,0 +1,22 @@
+---
+- include_vars: '{{ item }}'
+  with_first_found:
+  - '{{ ansible_distribution }}.yml'
+  - '{{ ansible_os_family }}{{ ansible_distribution_major_version }}.yml'
+  - '{{ ansible_os_family }}.yml'
+  tags:
+  - ipa_server_install
+  - ipa_server_config
+  - ipa_server_service
+
+- include: install.yml
+  tags: ipa_server_install
+
+- include: config.yml
+  tags: ipa_server_config
+
+- include: service.yml
+  tags: ipa_server_service
+
+- meta: flush_handlers
+  when: '{{ ipa_server_flush_handlers | bool }}'

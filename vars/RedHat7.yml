@@ -1,0 +1,5 @@
+---
+ipa_server_package_names:
+- ipa-server
+ipa_server_service_names:
+- ipa.service
